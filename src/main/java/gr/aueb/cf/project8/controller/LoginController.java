@@ -4,7 +4,10 @@ import gr.aueb.cf.project8.model.User;
 import gr.aueb.cf.project8.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,14 +55,39 @@ public class LoginController {
 
 
     @GetMapping("/success")
-    public String showSuccessPage() {
-        return "success"; // Assuming success.html is your success page
+    public String success(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        model.addAttribute("username", username);
+        return "success";
     }
 
     @GetMapping("/failure")
     public String showFailurePage() {
         return "failure"; // Assuming failure.html is your failure page
     }
+
+    @GetMapping("/electricityReg")
+    public String showElectricityForm() {
+        return "electricityReg";
+    }
+
+    @GetMapping("/leaksReg")
+    public String showLeaksForm() {
+        return "leaksReg";
+    }
+
+    @GetMapping("/rubbishReg")
+    public String showRubbishForm() {
+        return "rubbishReg";
+    }
+
+    @GetMapping("/pavementsReg")
+    public String showPavementsForm() {
+        return "pavementsReg";
+    }
+
+
 }
 
 

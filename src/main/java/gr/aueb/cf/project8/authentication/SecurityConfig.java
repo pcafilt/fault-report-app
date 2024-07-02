@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -64,5 +66,10 @@ public class SecurityConfig {
         config.addAllowedMethod("*"); // Allow all methods
         source.registerCorsConfiguration("/**", config);
         return source;
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new SimpleUrlAuthenticationSuccessHandler("/success");
     }
 }

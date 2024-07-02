@@ -2,9 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Success</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        .grid-item {
+            text-align: center;
+        }
+        .grid-item img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <h1>Login Successful!</h1>
-<p>Welcome!</p>
+<p>Welcome, <span th:text="${username}">User</span>!</p>
+
+<div class="grid-container">
+    <div class="grid-item">
+        <a th:href="@{/electricityReg}">
+            <img src="/images/electricity.png" alt="Electricity Registration">
+        </a>
+        <p>Electricity</p>
+    </div>
+    <div class="grid-item">
+        <a th:href="@{/leaksReg}">
+            <img src="/images/leaks.png" alt="Leaks Registration">
+        </a>
+        <p>Leaks</p>
+    </div>
+    <div class="grid-item">
+        <a th:href="@{/rubbishReg}">
+            <img src="/images/rubbish.png" alt="Rubbish Registration">
+        </a>
+        <p>Rubbish</p>
+    </div>
+    <div class="grid-item">
+        <a th:href="@{/pavementsReg}">
+            <img src="/images/pavements.png" alt="Pavements Registration">
+        </a>
+        <p>Pavements</p>
+    </div>
+</div>
+
+<form th:action="@{/logout}" method="post">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
