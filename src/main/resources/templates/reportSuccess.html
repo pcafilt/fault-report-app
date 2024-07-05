@@ -1,0 +1,343 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Report Submission Successful</title>-->
+<!--    <style>-->
+
+<!--        body {-->
+<!--            font-family: 'Roboto', sans-serif;-->
+<!--            background-color: #3498db;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+<!--        .navbar {-->
+<!--            background-color: #2c3e50;-->
+<!--            padding: 10px;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            color: white;-->
+<!--            position: relative;-->
+<!--        }-->
+<!--        .navbar h1 {-->
+<!--            margin: 0;-->
+<!--        }-->
+<!--        .navbar .user-info {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .navbar .user-info .username {-->
+<!--            margin-right: 20px;-->
+<!--        }-->
+<!--        .navbar .hamburger {-->
+<!--            font-size: 24px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .dropdown-content {-->
+<!--            display: none;-->
+<!--            position: absolute;-->
+<!--            right: 10px;-->
+<!--            top: 40px;-->
+<!--            background-color: #f9f9f9;-->
+<!--            min-width: 160px;-->
+<!--            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);-->
+<!--            z-index: 1;-->
+<!--        }-->
+<!--        .dropdown-content a {-->
+<!--            color: black;-->
+<!--            padding: 12px 16px;-->
+<!--            text-decoration: none;-->
+<!--            display: block;-->
+<!--        }-->
+<!--        .dropdown-content a:hover {-->
+<!--            background-color: #f1f1f1;-->
+<!--        }-->
+<!--        .show {-->
+<!--            display: block;-->
+<!--        }-->
+<!--        .container {-->
+<!--            background-color: white;-->
+<!--            margin: 20px auto;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            max-width: 800px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .container h1 {-->
+<!--            color: #2c3e50;-->
+<!--        }-->
+<!--        .grid-container {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: 1fr 1fr;-->
+<!--            gap: 20px;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        .grid-item {-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .grid-item img {-->
+<!--            width: 100px;-->
+<!--            height: 100px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;<h1>Report Submitted Successfully!</h1>&ndash;&gt;-->
+<!--<div class="navbar">-->
+<!--    <h1>successful failure report</h1>-->
+<!--    <div class="user-info">-->
+<!--        <div class="username" th:text="  ${username} ">Welcome, User!</div>-->
+<!--        <div class="hamburger" onclick="toggleDropdown()">&#9776;</div>-->
+<!--        <div class="dropdown-content" id="dropdown-content">-->
+<!--            <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>-->
+<!--            <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;">-->
+<!--                &lt;!&ndash; <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> &ndash;&gt;-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="container mt-4">-->
+<!--    <div class="alert alert-success" role="alert">-->
+<!--        <h4 class="alert-heading">Report Submitted Successfully!</h4>-->
+<!--        <p>Here are the details of your submission:</p>-->
+<!--        <hr>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div class="container">-->
+<!--<div class="grid-container">-->
+<!--    <div class="grid-item">-->
+<!--        <a th:href="@{/electricityReg}">-->
+<!--            <img src="../static/images/pexels-led-supermarket-577514.jpg" alt="Electricity Registration">-->
+<!--        </a>-->
+<!--        <p>Electricity</p>-->
+<!--    </div>-->
+<!--    <div class="grid-item">-->
+<!--        <a th:href="@{/leaksReg}">-->
+<!--            <img src="../static/images/pexels2837863.jpg" alt="Leaks Registration">-->
+<!--        </a>-->
+<!--        <p>Leaks</p>-->
+<!--    </div>-->
+<!--    <div class="grid-item">-->
+<!--        <a th:href="@{/rubbishReg}">-->
+<!--            <img src="../static/images/pexels-catherine-sheila-2409022(2).jpg" alt="Rubbish Registration">-->
+<!--        </a>-->
+<!--        <p>Rubbish</p>-->
+<!--    </div>-->
+<!--    <div class="grid-item">-->
+<!--        <a th:href="@{/pavementsReg}">-->
+<!--            <img src="../static/images/pexels-pixabay-207204.jpg" alt="Pavements Registration">-->
+<!--        </a>-->
+<!--        <p>Pavements</p>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<script>-->
+<!--    function toggleDropdown() {-->
+<!--        document.getElementById("dropdown-content").classList.toggle("show");-->
+<!--    }-->
+
+<!--    // Close the dropdown if the user clicks outside of it-->
+<!--    window.onclick = function(event) {-->
+<!--        if (!event.target.matches('.hamburger')) {-->
+<!--            var dropdowns = document.getElementsByClassName("dropdown-content");-->
+<!--            for (var i = 0; i < dropdowns.length; i++) {-->
+<!--                var openDropdown = dropdowns[i];-->
+<!--                if (openDropdown.classList.contains('show')) {-->
+<!--                    openDropdown.classList.remove('show');-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Report Submission Successful</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #3498db;
+            margin: 20;
+            padding: 5;
+        }
+        .navbar {
+            background-color: #2c3e50;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .user-info .username {
+            margin-right: 20px;
+        }
+        .navbar .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 40px;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .show {
+            display: block;
+        }
+        .card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .card table, .card th, .card td {
+            border: 1px solid #ddd;
+        }
+        .card th, .card td {
+            padding: 8px;
+            text-align: left;
+        }
+        .card th {
+            background-color: #f2f2f2;
+        }
+        .back-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px 40px; /* Increased margin from 20px to 40px */
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <h1>Successful Failure Report</h1>
+    <div class="user-info">
+        <div class="username" th:text="${username}">Welcome, User!</div>
+        <div class="hamburger" onclick="toggleDropdown()">&#9776;</div>
+        <div class="dropdown-content" id="dropdown-content">
+            <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;">
+                <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Report Submitted Successfully!</h4>
+        <p>Here are the details of your submission:</p>
+        <hr>
+        <div th:if="${fault != null}">
+            <div class="card">
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <td th:text="${fault.location}">Sample Location</td>
+                    </tr>
+                    <tr>
+                        <th>Type of Fault</th>
+                        <td th:text="${fault.faultType}">Sample Fault Type</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td th:text="${fault.description}">Sample Description</td>
+                    </tr>
+                    <tr>
+                        <th>Observation Time</th>
+                        <td th:text="${fault.observationTime}">Sample Time</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Info</th>
+                        <td th:text="${fault.contactInfo}">Sample Contact Info</td>
+                    </tr>
+                    <tr th:if="${fault.photoBase64 != null}">
+                        <th>Photo</th>
+                        <td>
+                            <img th:src="'data:image/jpeg;base64,' + ${fault.photoBase64}" alt="Fault Photo" style="max-width: 200px; max-height: 200px;"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center;">
+    <a th:href="@{/success}" class="back-button">Back to Main Menu</a>
+</div>
+
+<script>
+    function toggleDropdown() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.hamburger')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
