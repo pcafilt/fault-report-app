@@ -35,14 +35,14 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add CORS configuration
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/login", "/resources/**", "/css/**", "/js/**").permitAll()
+                                .requestMatchers("/login", "/resources/**", "/css/**", "/js/**","/images/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/success",true)
+                                .defaultSuccessUrl("/electricityReg",true)
                                 //.failureUrl("/failure")
                                 .permitAll()
                 )

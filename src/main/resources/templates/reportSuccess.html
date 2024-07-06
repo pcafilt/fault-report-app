@@ -114,25 +114,25 @@
 <!--<div class="grid-container">-->
 <!--    <div class="grid-item">-->
 <!--        <a th:href="@{/electricityReg}">-->
-<!--            <img src="../static/images/pexels-led-supermarket-577514.jpg" alt="Electricity Registration">-->
+<!--            <img src="../static/images/bulb.jpg" alt="Electricity Registration">-->
 <!--        </a>-->
 <!--        <p>Electricity</p>-->
 <!--    </div>-->
 <!--    <div class="grid-item">-->
 <!--        <a th:href="@{/leaksReg}">-->
-<!--            <img src="../static/images/pexels2837863.jpg" alt="Leaks Registration">-->
+<!--            <img src="../static/images/water1.jpg" alt="Leaks Registration">-->
 <!--        </a>-->
 <!--        <p>Leaks</p>-->
 <!--    </div>-->
 <!--    <div class="grid-item">-->
 <!--        <a th:href="@{/rubbishReg}">-->
-<!--            <img src="../static/images/pexels-catherine-sheila-2409022(2).jpg" alt="Rubbish Registration">-->
+<!--            <img src="../static/images/plasticsand.jpg" alt="Rubbish Registration">-->
 <!--        </a>-->
 <!--        <p>Rubbish</p>-->
 <!--    </div>-->
 <!--    <div class="grid-item">-->
 <!--        <a th:href="@{/pavementsReg}">-->
-<!--            <img src="../static/images/pexels-pixabay-207204.jpg" alt="Pavements Registration">-->
+<!--            <img src="../static/images/pavement.jpg" alt="Pavements Registration">-->
 <!--        </a>-->
 <!--        <p>Pavements</p>-->
 <!--    </div>-->
@@ -161,18 +161,18 @@
 <!--</body>-->
 <!--</html>-->
 
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Report Submission Successful</title>
     <style>
-        /* Your CSS styles here */
+        /* CSS styles */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #3498db;
-            margin: 20;
+            margin: 20px;
             padding: 5;
+            background-size: cover;
+            background-position: center;
         }
         .navbar {
             background-color: #2c3e50;
@@ -258,10 +258,39 @@
             background-color: #45a049;
         }
     </style>
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const faultType = /*[[${fault.faultType}]]*/ 'Default Fault Type'; // Thymeleaf expression to inject the fault type
+
+            let imageUrl = '';
+
+            switch (faultType) {
+                case 'Electricity Fault':
+                    imageUrl = /*[[${'/images/bulb.jpg'}]]*/ 'default.jpg';
+                    break;
+                case 'Water grid failure':
+                    imageUrl = /*[[${'/images/water1.jpg'}]]*/ 'default.jpg';
+                    break;
+                case 'Damaged road infrastructure':
+                    imageUrl = /*[[${'/images/pavement.jpg'}]]*/ 'default.jpg';
+                    break;
+                case 'Garbage / Urban pollution':
+                    imageUrl = /*[[${'/images/plasticsand.jpg'}]]*/ 'default.jpg';
+                    break;
+                default:
+                    imageUrl = ''; // Set a default background image if necessary
+                    break;
+            }
+
+            if (imageUrl) {
+                document.body.style.backgroundImage = `url(${imageUrl})`;
+            }
+        });
+    </script>
 </head>
 <body>
 <div class="navbar">
-    <h1>Successful Failure Report</h1>
+    <h1>Failure Report summary</h1>
     <div class="user-info">
         <div class="username" th:text="${username}">Welcome, User!</div>
         <div class="hamburger" onclick="toggleDropdown()">&#9776;</div>
@@ -315,7 +344,7 @@
 </div>
 
 <div style="text-align: center;">
-    <a th:href="@{/success}" class="back-button">Back to Main Menu</a>
+    <a th:href="@{/electricityReg}" class="back-button">Back to Main Menu</a>
 </div>
 
 <script>
@@ -338,6 +367,3 @@
 </script>
 </body>
 </html>
-
-
-

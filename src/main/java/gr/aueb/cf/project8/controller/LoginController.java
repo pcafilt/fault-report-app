@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -68,13 +69,15 @@ public class LoginController {
     }
 
     @GetMapping("/electricityReg")
-    public String showElectricityForm() {
+    public String showElectricityForm(Principal principal, Model model) {
+        String temp = principal.getName();
+        model.addAttribute("username",temp);
         return "electricityReg";
     }
 
     @GetMapping("/leaksReg")
     public String showLeaksForm() {
-        return "leaksReg";
+        return "electricityReg";
     }
 
     @GetMapping("/rubbishReg")

@@ -119,7 +119,7 @@ public class ElectricityFaultController {
     }
 
     @GetMapping("/reportSuccess")
-    public String reportSuccess(Model model) {
+    public String reportSuccess(Model model,Principal principal) {
 
 
         if (!model.containsAttribute("fault")) {
@@ -127,7 +127,7 @@ public class ElectricityFaultController {
         }
         ElectricityFault fault = (ElectricityFault) model.getAttribute("fault");
         model.addAttribute("photoBase64", fault.getPhotoBase64());
-
+        model.addAttribute("username", principal.getName());
         return "reportSuccess";
     }
 
