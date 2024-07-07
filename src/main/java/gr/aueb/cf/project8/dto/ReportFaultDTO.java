@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class ReportElectricityFaultDTO {
+public class ReportFaultDTO {
     private String location;
     private String faultType;
     private String description;

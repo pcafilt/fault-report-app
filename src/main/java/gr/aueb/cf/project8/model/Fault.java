@@ -1,22 +1,33 @@
 package gr.aueb.cf.project8.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.hibernate.validator.constraints.Email;
 
-import java.util.Optional;
 
 @Entity
 @Data
-public class ElectricityFault {
+public class Fault {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message="location is a required field")
     private String location;
+
+    @NotBlank(message="fault type selection is required")
     private String faultType;
+
+    @NotBlank(message="description is a required field")
     private String description;
+
+    @NotNull(message = "Observation time is required")
     private String observationTime;
+
+    @Email(message = "Invalid email format")
     private String contactInfo;
 
     @Transient
@@ -32,9 +43,5 @@ public class ElectricityFault {
     private User user;
 
 
-    public void setUser(Optional<User> user) {
-        if(user.isPresent()) {
-            this.user = user.get();
-        }
-    }
+
 }
