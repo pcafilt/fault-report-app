@@ -75,9 +75,9 @@ public class SecurityConfig {
         return new SimpleUrlAuthenticationSuccessHandler("/success");
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }
