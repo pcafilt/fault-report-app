@@ -10,6 +10,5 @@ public class ReportFaultDTO {
     private String description;
     private String contactInfo;
     private MultipartFile photo; // For file uploads
-    private String status;
     private String photoBase64; // New field for base64 photo
 }
