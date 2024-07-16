@@ -77,18 +77,6 @@ public class FaultService {
 
     public List<Fault> getFaultsByFilter(String filter) {
         List<Fault> faults;
-//        switch (filter) {
-//            case "type1":
-//                return repository.findByFaultType("Electricity Fault");
-//            case "type2":
-//                return repository.findByFaultType("Damaged road infrastructure");
-//            case "type3":
-//                return repository.findByFaultType("Water grid failure");
-//            case "type4":
-//                return repository.findByFaultType("Garbage / Urban pollution");
-//            default:
-//                return repository.findAll();
-//        }
         switch (filter) {
             case "type1":
                 faults = repository.findByFaultType("Electricity Fault");
@@ -106,13 +94,8 @@ public class FaultService {
                 faults = repository.findAll();
                 break;
         }
-        //System.out.println("Filter: " + filter + " | Found faults: " + faults.size());
         return faults;
     }
-
-
-
-
 
 }
 
