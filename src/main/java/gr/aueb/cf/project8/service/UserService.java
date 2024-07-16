@@ -17,11 +17,16 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public Optional<User> authenticate(String username, String rawPassword) {
         Optional<User> user = userRepository.findByUsername(username);
         if (user != null && passwordEncoder.matches(rawPassword, user.get().getPassword())) {
             return user;
         }
         return null;
+    }
+
+    public Optional<User> findByUsername(String username) {
+      return  userRepository.findByUsername(username);
     }
 }

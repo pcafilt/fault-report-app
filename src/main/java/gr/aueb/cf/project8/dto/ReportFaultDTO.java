@@ -8,8 +8,8 @@ public class ReportFaultDTO {
     private String location;
     private String faultType;
     private String description;
-    private String observationTime;
     private String contactInfo;
     private MultipartFile photo; // For file uploads
+    private String status;
     private String photoBase64; // New field for base64 photo
 }

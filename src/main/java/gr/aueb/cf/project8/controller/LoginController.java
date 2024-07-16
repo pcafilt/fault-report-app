@@ -1,6 +1,8 @@
 package gr.aueb.cf.project8.controller;
 
+import gr.aueb.cf.project8.model.User;
 import gr.aueb.cf.project8.repository.UserRepository;
+import gr.aueb.cf.project8.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +17,8 @@ public class LoginController {
     @Autowired
     private  UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";

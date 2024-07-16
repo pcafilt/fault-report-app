@@ -9,15 +9,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfigurationSource;
-
-import java.util.Arrays;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
 @EnableWebSecurity
@@ -35,17 +31,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add CORS configuration
-                .authorizeRequests(authorizeRequests ->
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/login", "/resources/**", "/css/**", "/js/**","/images/**").permitAll()
+                                .requestMatchers("/login", "/resources/**", "/css/**", "/js/**", "/images/**").permitAll()
+                                .requestMatchers("/electricityReg").hasRole("USER")
+                                .requestMatchers("/my-reports").hasRole("USER")
+                                .requestMatchers("/faultManagement").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/electricityReg",true)
+                                .successHandler(successHandler())
                                 .permitAll()
                 )
                 .logout(logout ->
@@ -72,12 +71,14 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new SimpleUrlAuthenticationSuccessHandler("/success");
+        return (request, response, authentication) -> {
+            response.sendRedirect(authentication.getAuthorities().stream()
+                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN")) ? "/faultManagement" : "/electricityReg");
+        };
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

@@ -28,11 +28,11 @@ public class MyReportsController {
     }
 
 
-    @PostMapping("/deleteFault")
-    public String deleteFault(@RequestParam("id") Long faultId) {
-        faultService.deleteFaultById(faultId);
-        return "redirect:/my-reports";
-    }
+//    @PostMapping("/deleteFault")
+//    public String deleteFault(@RequestParam("id") Long faultId) {
+//        faultService.deleteFaultById(faultId);
+//        return "redirect:/my-reports";
+//    }
 
 
 }

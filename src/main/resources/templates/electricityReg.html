@@ -2,97 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Report a Fault</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #3498db;
-            margin: 0;
-            padding: 0;
-            color: white;
-            transition: background-image  4s ease-in-out;
-            background-image: url('/images/bulb.jpg');
-        }
-        .navbar {
-            background-color: #2c3e50;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            position: relative;
-        }
-        .navbar h1 {
-            margin: 0;
-        }
-        .navbar .user-info {
-            display: flex;
-            align-items: center;
-        }
-        .navbar .user-info .username {
-            margin-right: 20px;
-        }
-        .navbar .hamburger {
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 10px;
-            top: 40px;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        .show {
-            display: block;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.8);
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            text-align: left;
-            color: #2c3e50;
-        }
-        .container h1 {
-            color: #2c3e50;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input, select, textarea, button {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #34495e;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/electricityReg.css">
     <script>
         function changeBackground() {
             const faultType = document.getElementById('faultType').value;
@@ -159,6 +69,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <h1>Fault details:</h1>
     <form th:action="@{/submitReport}" method="post" enctype="multipart/form-data">
@@ -176,8 +87,8 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" cols="50" required></textarea>
 
-        <label for="observationTime">Date and Time of Observation:</label>
-        <input type="datetime-local" id="observationTime" name="observationTime" required>
+<!--        <label for="observationTime">Date and Time of Observation:</label>-->
+<!--        <input type="datetime-local" id="observationTime" name="observationTime" required>-->
 
         <label for="contactInfo">Contact Information (optional):</label>
         <input type="text" id="contactInfo" name="contactInfo">

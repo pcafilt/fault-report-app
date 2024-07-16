@@ -1,107 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Report Submission Successful</title>
-    <style>
+    <link rel="stylesheet" href="/css/reportSuccess.css">
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 20px;
-            padding: 5px;
-            background-size: cover;
-            background-position: center;
-            padding-top: 60px;
-            background-color: #34495e;
-        }
-        .navbar {
-            background-color: #2c3e50;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .navbar h1 {
-            margin: 0;
-        }
-        .navbar .user-info {
-            display: flex;
-            align-items: center;
-        }
-        .navbar .user-info .username {
-            margin-right: 20px;
-        }
-        .navbar .hamburger {
-            font-size: 24px;
-            cursor: pointer;
-            padding-right: 17px;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 10px;
-            top: 40px;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        .show {
-            display: block;
-        }
-        .card {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .card table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .card table, .card th, .card td {
-            border: 1px solid #ddd;
-        }
-        .card th, .card td {
-            padding: 8px;
-            text-align: left;
-        }
-        .card th {
-            background-color: #f2f2f2;
-        }
-        .back-button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 20px 40px;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .back-button:hover {
-            background-color: #45a049;
-        }
-    </style>
     <script th:inline="javascript">
         document.addEventListener("DOMContentLoaded", function() {
             const faultType = /*[[${fault.faultType}]]*/ 'Default Fault Type'; // Thymeleaf expression to inject the fault type
@@ -131,6 +34,7 @@
             }
         });
     </script>
+
 </head>
 <body>
 <div class="navbar">
@@ -168,10 +72,10 @@
                         <th>Description</th>
                         <td th:text="${fault.description}">Sample Description</td>
                     </tr>
-                    <tr>
-                        <th>Observation Time</th>
-                        <td th:text="${fault.observationTime}">Sample Time</td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <th>Observation Time</th>-->
+<!--                        <td th:text="${#dates.format(fault.observationTime, 'dd-MM-yyyy HH:mm')}">Sample Time</td>-->
+<!--                    </tr>-->
                     <tr>
                         <th>Contact Info</th>
                         <td th:text="${fault.contactInfo}">Sample Contact Info</td>

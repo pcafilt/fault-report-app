@@ -6,9 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Data
+@Table(name="fault")
 public class Fault {
 
     @Id
@@ -24,8 +27,8 @@ public class Fault {
     @NotBlank(message="description is a required field")
     private String description;
 
-    @NotNull(message = "Observation time is required")
-    private String observationTime;
+    @Column(nullable = false,updatable = false)
+    private LocalDateTime observationTime;
 
     @Email(message = "Invalid email format")
     private String contactInfo;
@@ -42,6 +45,10 @@ public class Fault {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @PrePersist
+    protected void onCreate() {
+        observationTime = LocalDateTime.now();
+    }
 
 
 }

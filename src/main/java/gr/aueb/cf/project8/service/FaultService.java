@@ -35,7 +35,6 @@ public class FaultService {
         fault.setLocation(dto.getLocation());
         fault.setFaultType(dto.getFaultType());
         fault.setDescription(dto.getDescription());
-        fault.setObservationTime(dto.getObservationTime());
         fault.setContactInfo(dto.getContactInfo());
         fault.setUser(user.get());
 
@@ -70,6 +69,50 @@ public class FaultService {
     public void deleteFaultById(Long id) {
         repository.deleteById(id);
     }
+
+    public List<Fault> getAllFaults() {
+        return repository.findAll();
+    }
+
+
+    public List<Fault> getFaultsByFilter(String filter) {
+        List<Fault> faults;
+//        switch (filter) {
+//            case "type1":
+//                return repository.findByFaultType("Electricity Fault");
+//            case "type2":
+//                return repository.findByFaultType("Damaged road infrastructure");
+//            case "type3":
+//                return repository.findByFaultType("Water grid failure");
+//            case "type4":
+//                return repository.findByFaultType("Garbage / Urban pollution");
+//            default:
+//                return repository.findAll();
+//        }
+        switch (filter) {
+            case "type1":
+                faults = repository.findByFaultType("Electricity Fault");
+                break;
+            case "type2":
+                faults = repository.findByFaultType("Damaged road infrastructure");
+                break;
+            case "type3":
+                faults = repository.findByFaultType("Water grid failure");
+                break;
+            case "type4":
+                faults = repository.findByFaultType("Garbage / Urban pollution");
+                break;
+            default:
+                faults = repository.findAll();
+                break;
+        }
+        //System.out.println("Filter: " + filter + " | Found faults: " + faults.size());
+        return faults;
+    }
+
+
+
+
 
 }
 
