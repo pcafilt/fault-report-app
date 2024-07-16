@@ -27,14 +27,6 @@ public class FaultManagementController {
 
     @GetMapping("/faultManagement")
     public String faultManagement(Model model,@RequestParam(required = false) String filter,Principal principal) {
-//        List<Fault> faults;
-//        if (filter == null || filter.isEmpty()) {
-//            faults = faultService.getAllFaults();
-//        } else {
-//            faults = faultService.getFaultsByFilter(filter);
-//        }        model.addAttribute("faults", faults);
-//        return "faultManagement";
-//    }
 
     List<Fault> faults;
         if (filter != null && !filter.equals("all")) {
@@ -48,30 +40,18 @@ public class FaultManagementController {
         return "faultManagement";
 }
 
-
     @PostMapping("/deleteFault")
     public String deleteFault(@RequestParam("id") Long faultId, Principal principal) {
         faultService.deleteFaultById(faultId);
 
         String username = principal.getName();
-//        System.out.println("Current user: " +  userService.findByUsername(username).get().getRoles().get(0).getClass());
 
-        // Check the user's role
+        // Checking for the user's role and redirects respectively
         if ( userService.findByUsername(username).get().getRoles().get(0).equals("ADMIN")){
-        //if (isUserAdmin(principal.getName())) {
-            System.out.println("this is an admin");
-            return "redirect:/faultManagement";
-        } else {
-            System.out.println("this is a simple user");
+            return "redirect:/faultManagement";}
+        else {
             return "redirect:/my-reports";
-        }
+             }
     }
 
-
-
-//
-//    private boolean isUserAdmin(String username) {
-//        Optional<User> user = userService.findByUsername(username);
-//        return user.isPresent() && user.get().getRoles().contains("ROLE_ADMIN");
-//    }
 }
