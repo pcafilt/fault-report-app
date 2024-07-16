@@ -31,10 +31,8 @@ public class FaultManagementController {
     List<Fault> faults;
         if (filter != null && !filter.equals("all")) {
         faults = faultService.getFaultsByFilter(filter);
-        System.out.println("Filter applied: " + filter + " | Number of faults: " + faults.size());
     } else {
         faults = faultService.getAllFaults();
-        System.out.println("No filter applied | Number of faults: " + faults.size());
     }
         model.addAttribute("faults", faults);
         return "faultManagement";
