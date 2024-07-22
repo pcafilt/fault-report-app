@@ -10,8 +10,11 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Data
-@Table(name="fault")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@EqualsAndHashCode@Table(name="fault")
 public class Fault {
 
     @Id
