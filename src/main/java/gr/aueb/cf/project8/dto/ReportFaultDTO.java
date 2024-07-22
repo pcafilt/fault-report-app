@@ -3,7 +3,12 @@ package gr.aueb.cf.project8.dto;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@EqualsAndHashCode
+    
 public class ReportFaultDTO {
     private String location;
     private String faultType;
